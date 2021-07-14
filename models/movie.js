@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const movieSchema = new mongoose.Schema({
   country: {
     type: String,
@@ -6,6 +7,10 @@ const movieSchema = new mongoose.Schema({
   },
   director: {
     type: String,
+    required: true,
+  },
+  duration: {
+    type: Number,
     required: true,
   },
   year: {
@@ -16,34 +21,25 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  img: {
+  image: {
     type: String,
     required: true,
     validate: {
-      validator: (link) =>
-        /https?:\/\/(www\.)?(?:[-\w.]+\.[a-z]+)(?:\/[-\w@/]*#?)?(?:.(?:jpg|jpeg|png))?/gm.test(
-          link
-        ),
+      validator: (link) => /https?:\/\/(www\.)?(?:[-\w.]+\.[a-z]+)(?:\/[-\w@/]*#?)?(?:.(?:jpg|jpeg|png))?/gm.test(link),
     },
   },
   trailer: {
     type: String,
     required: true,
     validate: {
-      validator: (link) =>
-        /https?:\/\/(www\.)?(?:[-\w.]+\.[a-z]+)(?:\/[-\w@/]*#?)?(?:.(?:jpg|jpeg|png))?/gm.test(
-          link
-        ),
+      validator: (link) => /https?:\/\/(www\.)?(?:[-\w.]+\.[a-z]+)(?:\/[-\w@/]*#?)?(?:.(?:jpg|jpeg|png))?/gm.test(link),
     },
   },
   thumbnail: {
     type: String,
     required: true,
     validate: {
-      validator: (link) =>
-        /https?:\/\/(www\.)?(?:[-\w.]+\.[a-z]+)(?:\/[-\w@/]*#?)?(?:.(?:jpg|jpeg|png))?/gm.test(
-          link
-        ),
+      validator: (link) => /https?:\/\/(www\.)?(?:[-\w.]+\.[a-z]+)(?:\/[-\w@/]*#?)?(?:.(?:jpg|jpeg|png))?/gm.test(link),
     },
   },
   owner: {
@@ -52,7 +48,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   movieId: {
-    type: String,
+    type: Number,
     required: true,
   },
   nameRU: {
@@ -62,10 +58,6 @@ const movieSchema = new mongoose.Schema({
   nameEN: {
     type: String,
     required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
   },
 });
 
