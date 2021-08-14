@@ -5,9 +5,10 @@ const CastError = require('../errors/CastError');
 const ForbiddenError = require('../errors/ForbiddenError');
 
 module.exports.getMovies = (req, res, next) => {
-  Movie.find({})
-    .then((movie) => {
-      res.status(200).send(movie);
+  const ownerId = req.user._id;
+  Movie.find({ owner: ownerId })
+    .then((movies) => {
+      res.status(200).send(movies);
     })
     .catch(next);
 };
